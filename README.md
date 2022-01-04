@@ -3,6 +3,7 @@ Completely open online chatting application through a logical decentralized bloc
 The blockchain stores a previous hash value, current hash value, time, chat data, and a special key(nonce) used for encryption in each block (node). The chatting application also allows
 for simple automated mining to ensure the security of the entire blockchain through complete Proof of Work. This chatting application automatically updates every second to ensure real-time
 chatting through AJAX. JQuery is used added ease and functionality for logical traversal from the login page to the chatting page.
+Plus, the chat application uses htmlspecialchars and stripslashes to prevent XSS(Cross-Site Scripting).
 
 Sample Screenshots Below:
 ----------------------------------------------------------------------------------------------------------------------------------------------
