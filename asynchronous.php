@@ -1,7 +1,11 @@
 
 <?php
         session_start();
-        $connection = new mysqli("localhost","dave(2)","ensf409","blockchain");
+
+        $username="";
+        $password="";
+        $schema="";
+        $connection = new mysqli("localhost",$username,$password,$schema);
                 
         if($connection->connect_error){
             die($connection->connect_error);
