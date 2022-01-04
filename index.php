@@ -2,13 +2,15 @@
     session_start();
     if(isset($_GET['logout'])){
          $_SESSION['name']="";
-        //file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
         session_destroy();
         header("Location:index.php");
     }
 
     if(isset($_GET['mine'])){
-        $conn = new mysqli("localhost","dave(2)","ensf409","blockchain");
+         $username="";
+         $password="";
+         $schema="";
+         $conn = new mysqli("localhost",$username,$password,$schema);
         
         if($conn->connect_error){
             die($conn->connect_error);
@@ -30,7 +32,6 @@
                     if($currentHashTest!=$cHash){
                         echo "<p>Blockchain Vulnerable</p>";
                         $_SESSION['name']="";
-                        //file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
                         session_destroy();
                         header("Location:index.php");
 
@@ -98,8 +99,10 @@
  
             <div id="chatbox">
                 <?php
-                    $conn = new mysqli("localhost","dave(2)","ensf409","blockchain");
-                            
+                    $username="";
+                    $password="";
+                    $schema="";
+                    $conn = new mysqli("localhost",$username,$password,$schema);                            
                     if($conn->connect_error){
                         die($conn->connect_error);
                     }else{
@@ -120,10 +123,8 @@
                 ?>
             </div>
 
-            <!-- <input name="usermsg" type="text" id="usermsg" />
-            <input name="submitmsg" type="submit" id="submitmsg" value="Send" onclick="myFunction()"/> -->
             
-            <form name="message" action="http://localhost:3000/Users/Daves/Documents/Practice/blockchain/post.php" method="POST">
+            <form name="message" action="post.php" method="POST">
                 <input name="usermsg" type="text" id="usermsg" placeholder="Message"/>
                 <input name="submitmsg" type="image" id="submitmsg" alt="" src="message.jpg" width="10%"/>
                   
@@ -152,25 +153,6 @@
                 getData(); 
             }, 1000);  // it will refresh your data every 1 sec
 
-            // function loadLog() {
-            //         var oldscrollHeight = $("#chatbox")[0].scrollHeight - 20; //Scroll height before the request
- 
-            //         $.ajax({
-            //             url: "asynchronous.php",
-            //             cache: false,
-            //             success: function (html) {
-            //                 $("#chatbox").html(html); //Insert chat log into the #chatbox div
- 
-            //                 //Auto-scroll           
-            //                 var newscrollHeight = $("#chatbox")[0].scrollHeight - 20; //Scroll height after the request
-            //                 if(newscrollHeight > oldscrollHeight){
-            //                     $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-            //                 }   
-            //             }
-            //         });
-            //     }
- 
-            // setInterval (loadLog, 100);
             $("#mine").click(function () {
                     var exit = confirm("Are you sure you want to mine the chat?");
                     if (exit == true) {
